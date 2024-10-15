@@ -1,0 +1,10 @@
+pkgbase = font-dummy
+	pkgdesc = Dummy font provider
+	pkgver = 1
+	pkgrel = 1
+	arch = any
+	provides = adobe-source-code-pro-fonts
+	provides = cantarell-fonts
+	provides = ttf-font
+
+pkgname = font-dummy

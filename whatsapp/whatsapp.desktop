@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=0.1.0
+Name=WhatsApp
+Comment=WhatsApp Web Client written in Rust/GTK4
+Exec=/usr/bin/whatsapp
+Icon=whatsapp
+Terminal=false
+Categories=Chat;

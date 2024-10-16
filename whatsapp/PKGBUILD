@@ -1,0 +1,35 @@
+pkgname=whatsapp
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="WhatsApp Web Client written in Rust/GTK4"
+arch=('x86_64' 'aarch64')
+makedepends=('cargo')
+source=(
+	"main.rs"
+	"Cargo.toml"
+	"whatsapp.desktop"
+	"whatsapp.svg"
+)
+sha256sums=(
+	'9bd9b68f1e363f731e95cad23d082fad7dac83b4f69645fda57a069301a1621f'
+    '8e3fa3f4895462b734c7e2046269e0b59428bcf914a01705f6f3bdd38a6c1419'
+    'e57f23c73a5998aaf22f505e170b5f8fc67ca58f7db611ca2c5bf8fb069c62c1'
+    '6922049d899c3b71a906e11d5f75fd94dce93f5ad2a222a19ec8c5763d28451e'
+)
+
+prepare() {
+    export RUSTUP_TOOLCHAIN=stable
+	cargo fetch --offline --target "$(rustc -vV | sed -n 's/host: //p')"
+}
+
+build() {
+	export RUSTUP_TOOLCHAIN=stable
+    export CARGO_TARGET_DIR=target
+    cargo build --frozen --release --all-features
+}
+
+package() {
+    install -Dm0755 -t "$pkgdir/usr/bin/" "target/release/$pkgname"
+    install -Dm644 ./whatsapp.desktop "${pkgdir}/usr/share/applications/whatsapp.desktop"
+    install -Dm644 ./whatsapp.svg "${pkgdir}/usr/share/icons/hicolor/scalable/apps/whatsapp.svg"
+}

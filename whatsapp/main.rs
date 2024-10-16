@@ -5,7 +5,7 @@ use webkit6::prelude::{WebViewExt};
 
 fn main() -> glib::ExitCode {
     let app = Application::builder()
-        .application_id("io.github.tiagoporsch.WhatsApp")
+        .application_id("whatsapp")
         .build();
 
     app.connect_activate(|app| {
